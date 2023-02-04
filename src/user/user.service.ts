@@ -15,12 +15,29 @@ export class UserService {
     return this.prismaService.user.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  findOne(id: string) {
+    return this.prismaService.user.findUnique({
+      where: {
+        id: id,
+      },
+    });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  findByEmailId(email: string) {
+    return this.prismaService.user.findUnique({
+      where: {
+        email: email,
+      },
+    })
+  }
+
+  update(id: string, updateUserDto: UpdateUserDto) {
+    return this.prismaService.user.update({
+      where: {
+        id: id,
+      },
+      data: updateUserDto
+    });
   }
 
   remove(id: number) {

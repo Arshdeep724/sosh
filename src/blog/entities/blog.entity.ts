@@ -1,5 +1,5 @@
 import { Blog as BlogModel } from '@prisma/client';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsString, IsDate, IsDateString } from 'class-validator';
 
 export class Blog implements BlogModel {
   id: string;
@@ -16,7 +16,7 @@ export class Blog implements BlogModel {
   @IsString()
   createdBy: string;
 
-  @IsNotEmpty()
+  @IsDateString()
   @IsString()
-  createdOn: string;
+  createdOn: Date;
 }
