@@ -18,6 +18,10 @@ describe('AppController (e2e)', () => {
   it('/ (GET)', () => {
     return request(app.getHttpServer())
       .get('/')
+      .send({
+        "email": "chutmarika",
+        "token": "7907560c198f82783819ebd71847da80eb0b0d1063f34818e92a990cf7d81dbd"
+      })
       .expect(200)
       .expect('Hello World!');
   });
