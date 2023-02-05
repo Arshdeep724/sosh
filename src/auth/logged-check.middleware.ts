@@ -1,8 +1,8 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
-import { UserService } from 'src/user/user.service';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateUserDto } from 'src/user/dto/create-user.dto';
+import { UserService } from './../user/user.service';
+import { PrismaService } from './../prisma/prisma.service';
+import { CreateUserDto } from './../user/dto/create-user.dto';
 
 @Injectable()
 export class SecurityCheck implements NestMiddleware {
