@@ -11,8 +11,12 @@ export class BlogService {
     return this.prismaService.blog.create({data:createBlogDto});
   }
 
-  findAll() {
-    return this.prismaService.blog.findMany();
+  findAll(email:string) {
+    return this.prismaService.blog.findMany({
+      where: {
+        createdBy: email,
+      },
+    });
   }
 
   findOne(id: number) {

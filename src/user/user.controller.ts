@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   Res,
+  Headers
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -24,12 +25,12 @@ export class UserController {
   }
 
   @Post('login')
-  async login(@Body() body,@Res() res: Response) {
-    if(body.email === undefined){
+  async login(@Headers() headers,@Res() res: Response) {
+    if(headers['x-user-email'] === undefined){
       res.status(400).send("User Email Undefined");
       return;
     }
-    const user = await this.userService.findByEmailId(body.email);                     
+    const user = await this.userService.findByEmailId(headers['x-user-email']);                     
     if(user === null) {
       res.status(404).send("User Not Found");
       return;

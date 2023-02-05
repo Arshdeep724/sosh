@@ -6,6 +6,7 @@ import {
   Put,
   Param,
   Delete,
+  Headers
 } from '@nestjs/common';
 import { BlogService } from './blog.service';
 import { CreateBlogDto } from './dto/create-blog.dto';
@@ -21,8 +22,8 @@ export class BlogController {
   }
 
   @Get()
-  findAll() {
-    return this.blogService.findAll();
+  findAll(@Headers() headers) {
+    return this.blogService.findAll(headers['x-user-email']);
   }
 
   @Get(':id')
